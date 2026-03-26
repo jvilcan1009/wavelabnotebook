@@ -3,142 +3,94 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wave Lab Tabs</title>
-
+<title>Wave Lab - Water / Sound / Light</title>
 <style>
-  /* ASU colors */
-  :root {
-    --asu-maroon: #8C1D40;
-    --asu-gold: #FFC627;
-    --bg-light: #f4f4f4;
-    --border-light: #ccc;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: var(--bg-light);
-  }
-  header {
-    background: var(--asu-maroon);
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-size: 22px;
-  }
-
-  /* Tabs container */
-  .tabs {
-    display: flex;
-    background: white;
-    border-bottom: 2px solid var(--asu-maroon);
-    user-select: none;
-  }
-  .tab {
-    flex: 1;
-    padding: 12px 0;
-    text-align: center;
-    cursor: pointer;
-    font-weight: bold;
-    border: 2px solid transparent;
-    border-bottom: none;
-    color: var(--asu-maroon);
-    transition: background 0.3s ease;
-  }
-  .tab:hover {
-    background: var(--asu-gold);
-    color: var(--asu-maroon);
-  }
-  .tab.active {
-    background: var(--asu-maroon);
-    color: white;
-    border-color: var(--asu-maroon);
-    border-bottom: 2px solid var(--bg-light);
-  }
-
-  /* Sections */
-  .section {
-    padding: 15px;
-  }
-  .card {
-    background: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  th {
-    background: black;
-    color: white;
-    padding: 8px;
-  }
-  td {
-    border: 1px solid var(--border-light);
-    padding: 6px;
-  }
-  input {
-    width: 100%;
-    border: none;
-    padding: 5px;
-    box-sizing: border-box;
-  }
-  button {
-    margin-top: 10px;
-    padding: 10px;
-    width: 100%;
-    background: var(--asu-maroon);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-  .draggable {
-    background: var(--asu-gold);
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 6px;
-    cursor: grab;
-    user-select: none;
-  }
-  .dropzone {
-    min-height: 40px;
-    border: 2px dashed var(--asu-maroon);
-    margin: 5px 0;
-    padding: 5px;
-    border-radius: 6px;
-  }
-  .factor {
-    display: inline-block;
-    background: #eee;
-    padding: 5px;
-    margin: 3px;
-    border-radius: 5px;
-  }
-  .locked {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  .correct {
-    color: green;
-  }
-  .incorrect {
-    color: red;
-  }
-  #exportMsg {
-    margin-top: 8px;
-    font-weight: bold;
-    color: green;
-  }
+:root {
+  --asu-maroon: #8C1D40;
+  --asu-gold: #FFC627;
+  --bg-light: #f4f4f4;
+  --border-light: #ccc;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: var(--bg-light);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+header {
+  background: var(--asu-maroon);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 22px;
+}
+.tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2px solid var(--asu-maroon);
+}
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-bottom: none;
+  color: var(--asu-maroon);
+  transition: background 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab:hover { background: var(--asu-gold); color: var(--asu-maroon); }
+.tab.active {
+  background: var(--asu-maroon);
+  color: white;
+  border-color: var(--asu-maroon);
+  border-bottom: 2px solid var(--bg-light);
+}
+.section { padding: 15px; }
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th { background: black; color: white; padding: 8px; }
+td { border: 1px solid var(--border-light); padding: 6px; }
+input { width: 100%; border: none; padding: 5px; box-sizing: border-box; }
+button { margin-top: 10px; padding: 10px; width: 100%; background: var(--asu-maroon); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+button:disabled { background: #ccc; cursor: not-allowed; }
+.draggable {
+  background: var(--asu-gold);
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 6px;
+  cursor: grab;
+  user-select: none;
+}
+.dropzone {
+  min-height: 40px;
+  border: 2px dashed var(--asu-maroon);
+  margin: 5px 0;
+  padding: 5px;
+  border-radius: 6px;
+}
+.factor {
+  display: inline-block;
+  background: #eee;
+  padding: 5px;
+  margin: 3px;
+  border-radius: 5px;
+}
+.locked { opacity: 0.5; pointer-events: none; }
+.correct { color: green; }
+.incorrect { color: red; }
+#exportMsg { margin-top: 8px; font-weight: bold; color: green; }
 </style>
 </head>
 <body>
@@ -151,11 +103,10 @@
   <div class="tab" data-tab="light">Light</div>
 </div>
 
-<!-- Water Section -->
+<!-- ---------------- Water Section ---------------- -->
 <div class="section" id="waterSection">
-
   <div class="card">
-    <h3>Water Data Table (units: seconds, meters, seconds)</h3>
+    <h3>Water Data Table</h3>
     <table>
       <thead>
         <tr>
@@ -168,45 +119,38 @@
       </thead>
       <tbody>
         <tr>
-          <td><input id="waterTime5cycles" type="number" step="any" placeholder="e.g. 20.06" /></td>
+          <td><input id="waterTime5cycles" type="number" step="any"/></td>
           <td id="waterFreq"></td>
-          <td><input id="waterWavelength" type="number" step="any" placeholder="e.g. 0.068" /></td>
-          <td><input id="waterTime5cm" type="number" step="any" placeholder="e.g. 3.00" /></td>
+          <td><input id="waterWavelength" type="number" step="any"/></td>
+          <td><input id="waterTime5cm" type="number" step="any"/></td>
           <td id="waterSpeed"></td>
         </tr>
       </tbody>
     </table>
-    <button id="waterCalcBtn" disabled>Calculate & Add Trial</button>
+    <button id="waterCalcBtn">Calculate & Add Trial</button>
   </div>
 
   <div class="card">
-    <h3>Work Section (Show Your Process)</h3>
-
+    <h3>Work Section</h3>
     <p>Frequency Setup</p>
-    <div class="draggable" draggable="true" data="freq">5 / time</div>
+    <div class="draggable" draggable="true" data-val="freq">5 / time</div>
     <div class="dropzone" id="waterFreqDrop"></div>
-
     <p>Wavelength Conversion</p>
-    <div class="draggable" draggable="true" data="1">m → m (no conversion)</div>
-    <div class="draggable" draggable="true" data="0.01">cm → m</div>
+    <div class="draggable" draggable="true" data-val="1">m → m</div>
+    <div class="draggable" draggable="true" data-val="0.01">cm → m</div>
     <div class="dropzone" id="waterWaveDrop"></div>
-
     <p>Distance Conversion</p>
-    <div class="draggable" draggable="true" data="0.01">cm → m</div>
+    <div class="draggable" draggable="true" data-val="0.01">cm → m</div>
     <div class="dropzone" id="waterDistDrop"></div>
-
     <p>Time Conversion</p>
-    <div class="draggable" draggable="true" data="1">s → s (no conversion)</div>
+    <div class="draggable" draggable="true" data-val="1">s → s</div>
     <div class="dropzone" id="waterTimeDrop"></div>
-
     <button id="waterWorkValidate">Validate Work</button>
     <div id="waterWorkFeedback"></div>
   </div>
 
-  <div class="card locked" id="waterCalcSection">
+  <div class="card">
     <h3>Trials</h3>
-    <button id="waterAddTrialBtn">Add Trial</button>
-    <button id="waterRemoveTrialBtn">Remove Last Trial</button>
     <div id="waterTrialList"></div>
     <div id="waterAvgSpeed"></div>
     <div id="waterUncertainty"></div>
@@ -221,14 +165,12 @@
     <h3>Work Log</h3>
     <div id="waterWorkLog"></div>
   </div>
-
 </div>
 
-<!-- Sound Section -->
+<!-- ---------------- Sound Section ---------------- -->
 <div class="section" id="soundSection" style="display:none">
-
   <div class="card">
-    <h3>Sound Data Table (units: milliseconds, meters, milliseconds)</h3>
+    <h3>Sound Data Table</h3>
     <table>
       <thead>
         <tr>
@@ -241,45 +183,37 @@
       </thead>
       <tbody>
         <tr>
-          <td><input id="soundTime5cycles" type="number" step="any" placeholder="e.g. 15.22" /></td>
+          <td><input id="soundTime5cycles" type="number" step="any"/></td>
           <td id="soundFreq"></td>
-          <td><input id="soundWavelength" type="number" step="any" placeholder="e.g. 1.032" /></td>
-          <td><input id="soundTime5cm" type="number" step="any" placeholder="e.g. 7.38" /></td>
+          <td><input id="soundWavelength" type="number" step="any"/></td>
+          <td><input id="soundTime5cm" type="number" step="any"/></td>
           <td id="soundSpeed"></td>
         </tr>
       </tbody>
     </table>
-    <button id="soundCalcBtn" disabled>Calculate & Add Trial</button>
+    <button id="soundCalcBtn">Calculate & Add Trial</button>
   </div>
 
   <div class="card">
-    <h3>Work Section (Show Your Process)</h3>
-
+    <h3>Work Section</h3>
     <p>Frequency Setup</p>
-    <div class="draggable" draggable="true" data="freq">5 / time</div>
+    <div class="draggable" draggable="true" data-val="freq">5 / time</div>
     <div class="dropzone" id="soundFreqDrop"></div>
-
     <p>Wavelength Conversion</p>
-    <div class="draggable" draggable="true" data="0.01">cm → m</div>
-    <div class="draggable" draggable="true" data="0.001">mm → m</div>
+    <div class="draggable" draggable="true" data-val="0.01">cm → m</div>
     <div class="dropzone" id="soundWaveDrop"></div>
-
     <p>Distance Conversion</p>
-    <div class="draggable" draggable="true" data="0.01">cm → m</div>
+    <div class="draggable" draggable="true" data-val="0.01">cm → m</div>
     <div class="dropzone" id="soundDistDrop"></div>
-
     <p>Time Conversion</p>
-    <div class="draggable" draggable="true" data="0.001">ms → s</div>
+    <div class="draggable" draggable="true" data-val="0.001">ms → s</div>
     <div class="dropzone" id="soundTimeDrop"></div>
-
     <button id="soundWorkValidate">Validate Work</button>
     <div id="soundWorkFeedback"></div>
   </div>
 
-  <div class="card locked" id="soundCalcSection">
+  <div class="card">
     <h3>Trials</h3>
-    <button id="soundAddTrialBtn">Add Trial</button>
-    <button id="soundRemoveTrialBtn">Remove Last Trial</button>
     <div id="soundTrialList"></div>
     <div id="soundAvgSpeed"></div>
     <div id="soundUncertainty"></div>
@@ -294,14 +228,12 @@
     <h3>Work Log</h3>
     <div id="soundWorkLog"></div>
   </div>
-
 </div>
 
-<!-- Light Section -->
+<!-- ---------------- Light Section ---------------- -->
 <div class="section" id="lightSection" style="display:none">
-
   <div class="card">
-    <h3>Light Data Table (units: femtoseconds, meters, femtoseconds)</h3>
+    <h3>Light Data Table</h3>
     <table>
       <thead>
         <tr>
@@ -314,45 +246,38 @@
       </thead>
       <tbody>
         <tr>
-          <td><input id="lightTime5cycles" type="number" step="any" placeholder="e.g. 11.20" /></td>
+          <td><input id="lightTime5cycles" type="number" step="any"/></td>
           <td id="lightFreq"></td>
-          <td><input id="lightWavelength" type="number" step="any" placeholder="e.g. 7.107e-7" /></td>
-          <td><input id="lightTime2500nm" type="number" step="any" placeholder="e.g. 9.29" /></td>
+          <td><input id="lightWavelength" type="number" step="any"/></td>
+          <td><input id="lightTime2500nm" type="number" step="any"/></td>
           <td id="lightSpeed"></td>
         </tr>
       </tbody>
     </table>
-    <button id="lightCalcBtn" disabled>Calculate & Add Trial</button>
+    <button id="lightCalcBtn">Calculate & Add Trial</button>
   </div>
 
   <div class="card">
-    <h3>Work Section (Show Your Process)</h3>
-
+    <h3>Work Section</h3>
     <p>Frequency Setup</p>
-    <div class="draggable" draggable="true" data="freq">5 / time</div>
+    <div class="draggable" draggable="true" data-val="freq">5 / time</div>
     <div class="dropzone" id="lightFreqDrop"></div>
-
     <p>Wavelength Conversion</p>
-    <div class="draggable" draggable="true" data="1">m → m (no conversion)</div>
-    <div class="draggable" draggable="true" data="1e-9">nm → m</div>
+    <div class="draggable" draggable="true" data-val="1">m → m</div>
+    <div class="draggable" draggable="true" data-val="1e-9">nm → m</div>
     <div class="dropzone" id="lightWaveDrop"></div>
-
     <p>Distance Conversion</p>
-    <div class="draggable" draggable="true" data="1e-9">nm → m</div>
+    <div class="draggable" draggable="true" data-val="1e-9">nm → m</div>
     <div class="dropzone" id="lightDistDrop"></div>
-
     <p>Time Conversion</p>
-    <div class="draggable" draggable="true" data="1e-15">fs → s</div>
+    <div class="draggable" draggable="true" data-val="1e-15">fs → s</div>
     <div class="dropzone" id="lightTimeDrop"></div>
-
     <button id="lightWorkValidate">Validate Work</button>
     <div id="lightWorkFeedback"></div>
   </div>
 
-  <div class="card locked" id="lightCalcSection">
+  <div class="card">
     <h3>Trials</h3>
-    <button id="lightAddTrialBtn">Add Trial</button>
-    <button id="lightRemoveTrialBtn">Remove Last Trial</button>
     <div id="lightTrialList"></div>
     <div id="lightAvgSpeed"></div>
     <div id="lightUncertainty"></div>
@@ -367,45 +292,38 @@
     <h3>Work Log</h3>
     <div id="lightWorkLog"></div>
   </div>
-
 </div>
 
 <script>
-  // Tab Switching
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ---------------- Tabs ----------------
   const tabs = document.querySelectorAll('.tab');
-  const sections = {
-    water: document.getElementById('waterSection'),
-    sound: document.getElementById('soundSection'),
-    light: document.getElementById('lightSection'),
-  };
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      Object.entries(sections).forEach(([key, sec]) => {
-        sec.style.display = (key === tab.dataset.tab) ? 'block' : 'none';
-      });
+  const sections = {water: "waterSection", sound: "soundSection", light: "lightSection"};
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    Object.keys(sections).forEach(k => {
+      document.getElementById(sections[k]).style.display = k === tab.dataset.tab ? 'block' : 'none';
     });
-  });
+  }));
 
-  // Common Drag & Drop Logic
-  function enableDragDrop(section) {
+  // ---------------- Drag & Drop ----------------
+  function enableDragDrop(sectionId) {
+    const section = document.getElementById(sectionId);
     const draggables = section.querySelectorAll('.draggable');
     const dropzones = section.querySelectorAll('.dropzone');
-
     draggables.forEach(drag => {
       drag.addEventListener('dragstart', e => {
         e.dataTransfer.setData('val', drag.dataset.val);
         e.dataTransfer.setData('text', drag.innerText);
       });
     });
-
     dropzones.forEach(zone => {
       zone.addEventListener('dragover', e => e.preventDefault());
       zone.addEventListener('drop', e => {
         e.preventDefault();
-        zone.innerHTML = ''; // Only one factor at a time
+        zone.innerHTML = '';
         const val = e.dataTransfer.getData('val');
         const text = e.dataTransfer.getData('text');
         const div = document.createElement('div');
@@ -416,58 +334,50 @@
       });
     });
   }
+  Object.values(sections).forEach(enableDragDrop);
 
-  ['waterSection', 'soundSection', 'lightSection'].forEach(id => {
-    enableDragDrop(document.getElementById(id));
-  });
-
-  // ========== LAB LOGIC PER TAB ===========
-
-  // Helper: compute average and uncertainty
-  function computeStats(trials) {
-    if (!trials.length) return {avg: 0, unc: 0};
-    const avg = trials.reduce((a,b) => a+b, 0)/trials.length;
-    const max = Math.max(...trials);
-    const min = Math.min(...trials);
-    const unc = (max - min) / 2;
-    return {avg, unc};
+  // ---------------- Utility Functions ----------------
+  function calculateFrequency(timeInput) { return timeInput ? 5 / timeInput : 0; }
+  function calculateSpeed(distance, time) { return (distance && time) ? distance / time : 0; }
+  function updateTrialList(trialListId, trials, avgId, uncertaintyId) {
+    const listEl = document.getElementById(trialListId); listEl.innerHTML = '';
+    if(!trials.length){document.getElementById(avgId).innerText=''; document.getElementById(uncertaintyId).innerText=''; return;}
+    trials.forEach((t,i)=> listEl.innerHTML += `<div>Trial ${i+1}: Speed = ${t.toFixed(3)} m/s</div>`);
+    const avg = trials.reduce((a,b)=>a+b,0)/trials.length;
+    document.getElementById(avgId).innerText = `Average Speed = ${avg.toFixed(3)} m/s`;
+    const max = Math.max(...trials), min = Math.min(...trials);
+    document.getElementById(uncertaintyId).innerText = `Uncertainty = ±${((max-min)/2).toFixed(3)} m/s`;
   }
 
-  // General validation & calculation logic per tab
+  // ---------------- Water Calculation ----------------
+  let waterTrials = [];
+  document.getElementById('waterCalcBtn').addEventListener('click', ()=>{
+    const t5 = parseFloat(document.getElementById('waterTime5cycles').value);
+    const freq = calculateFrequency(t5);
+    document.getElementById('waterFreq').innerText = freq.toFixed(3);
+    const wavelength = parseFloat(document.getElementById('waterWavelength').value);
+    const t5cm = parseFloat(document.getElementById('waterTime5cm').value);
+    const speed = calculateSpeed(0.05, t5cm);
+    document.getElementById('waterSpeed').innerText = speed.toFixed(3);
+    waterTrials.push(speed);
+    updateTrialList('waterTrialList', waterTrials, 'waterAvgSpeed', 'waterUncertainty');
+    document.getElementById('waterWorkLog').innerHTML += `<div>Trial added: F=${freq.toFixed(3)}, λ=${wavelength}, v=${speed.toFixed(3)}</div>`;
+  });
 
-  function setupLab(tab) {
-    const isWater = tab === 'water';
-    const isSound = tab === 'sound';
-    const isLight = tab === 'light';
+  // ---------------- Export Example ----------------
+  document.getElementById('waterExportBtn').addEventListener('click', ()=>{
+    const data = waterTrials.map((v,i)=>`Trial ${i+1},Speed=${v}`).join('\n');
+    const blob = new Blob([data],{type:'text/plain'});
+    const link = document.createElement('a');
+    link.download = 'water_data.txt';
+    link.href = URL.createObjectURL(blob);
+    link.click();
+    document.getElementById('waterExportMsg').innerText = 'Data exported!';
+  });
 
-    // Elements
-    const inputs = {
-      time5cycles: document.getElementById(`${tab}Time5cycles`),
-      freqOut: document.getElementById(`${tab}Freq`),
-      wavelength: document.getElementById(`${tab}Wavelength`),
-      timeTravel: document.getElementById(`${tab}${isLight ? 'Time2500nm' : 'Time5cm'}`),
-      speedOut: document.getElementById(`${tab}Speed`),
-    };
+  // Similar code can be added for Sound and Light
+});
+</script>
 
-    const workDrops = {
-      freqDrop: document.getElementById(`${tab}FreqDrop`),
-      waveDrop: document.getElementById(`${tab}WaveDrop`),
-      distDrop: document.getElementById(`${tab}DistDrop`),
-      timeDrop: document.getElementById(`${tab}TimeDrop`),
-    };
-
-    const validateBtn = document.getElementById(`${tab}WorkValidate`);
-    const workFeedback = document.getElementById(`${tab}WorkFeedback`);
-    const calcSection = document.getElementById(`${tab}CalcSection`);
-    const calcBtn = document.getElementById(`${tab}CalcBtn`);
-    const addTrialBtn = document.getElementById(`${tab}AddTrialBtn`);
-    const removeTrialBtn = document.getElementById(`${tab}RemoveTrialBtn`);
-    const trialList = document.getElementById(`${tab}TrialList`);
-    const avgSpeed = document.getElementById(`${tab}AvgSpeed`);
-    const uncertainty = document.getElementById(`${tab}Uncertainty`);
-    const workLog = document.getElementById(`${tab}WorkLog`);
-    const exportBtn = document.getElementById(`${tab}ExportBtn`);
-    const exportMsg = document.getElementById(`${tab}ExportMsg`);
-
-    let unlocked = false;
-   
+</body>
+</html>
